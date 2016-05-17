@@ -1,0 +1,32 @@
+{
+  "name": "javascript_djkistra",
+  "version": "1.0.0",
+  "description": "Projeto com o objetivo de implementar o algoritmo de Djkistra em javascipt. Feito como ferramenta de estudo para a matéria de Teoria dos Grafos no curso de Ciências da Computação da Universidade Cruzeiro do Sul (São Paulo, Brasil)",
+  "main": "index.html",
+  "scripts": {
+    "gulp": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rapheer/javascript_djkistra.git"
+  },
+  "keywords": [
+    "djkistra",
+    "javascript",
+    "grafos",
+    "estudo"
+  ],
+  "author": "Daniel Marques, Eduardo Santos, Raphael Rosa, Victor Hugo Torquete",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rapheer/javascript_djkistra/issues"
+  },
+  "homepage": "https://github.com/Rapheer/javascript_djkistra#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^3.0.1"
+  }
+}

@@ -24,9 +24,19 @@
   },
   "homepage": "https://github.com/Rapheer/javascript_djkistra#readme",
   "devDependencies": {
+    "browser-sync": "^2.12.8",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
     "gulp-clean": "^0.3.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-imagemin": "^3.0.1"
+    "gulp-csslint": "^0.3.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-jasmine": "^2.3.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-usemin": "^0.3.23",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0"
   }
 }

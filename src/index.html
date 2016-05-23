@@ -23,11 +23,7 @@
 		<![endif]-->
 	</head>
 	<body>
-		<h1 class="text-center">Caminho MÃ­nimo</h1>
-
-
-		
-
+		<h1 class="text-center">Caminho Minimo</h1>
 
 		<!-- build:dependency js/deps.min.js-->
 		<script src="js/jquery/jquery-2.2.3.js"></script>
@@ -42,5 +38,182 @@
 		<!-- build:app js/index.min.js-->
 		<script type="text/javascript" src="js/index.js"></script>
 		<!-- endbuild -->
+		
+		
+	<script>
+	
+	   	function Calcular()
+	    {
+	    	var comboCidadesOrigem = document.getElementById("cboCidadesOrigem");
+			var comboCidadesDestino = document.getElementById("cboCidadesDestino");    
+			var comboMetrica = document.getElementById("cboMetrica");
+	    
+			$(function ()
+			{
+				var dijkstra = new Dijkstra();
+								
+				if(comboMetrica.selectedIndex == 0)//Hops
+				{
+					dijkstra.setGraph(
+						[
+							[ 'BAU', [['CAM',  1], ['CPG', 1], ['LOM', 1]] 	            			       ],
+							[ 'BEL', [['MAN',  1], ['NTL', 1]] 		                    			       ],
+							[ 'BHO', [['BSB',  1], ['RJO', 1], ['SJC', 1]]              			       ],
+							[ 'BLU', [['CUR',  1], ['FLO', 1], ['POA', 1]]		        			       ],
+							[ 'BSB', [['BHO',  1], ['MAN', 1], ['NTL', 1], ['RBP', 1]] 				       ],	
+							[ 'CAM', [['BAU',  1], ['RBP', 1], ['SJC', 1], ['SPO', 1]]  				   ],
+							[ 'CPG', [['BAU',  1], ['CUI', 1]] 	                        			       ],
+							[ 'CUI', [['CPG',  1], ['MAN', 1]] 	    									   ],
+							[ 'CUR', [['BLU',  1], ['FLO', 1], ['LON', 1], ['SPO', 1]] 				       ],
+							[ 'FLO', [['BLU',  1], ['CUR', 1], ['POA', 1], ['RJO', 1]] 				       ],
+							[ 'LON', [['BAU',  1], ['CUR', 1], ['SPO', 1]] 							       ],
+							[ 'MAN', [['BEL',  1], ['BSB', 1], ['CUI', 1]] 	    						   ],
+							[ 'NTL', [['BEL',  1], ['BSB', 1], ['REC', 1], ['SLV', 1]] 				       ],
+							[ 'POA', [['BLU',  1], ['FLO', 1]] 										       ],
+							[ 'RBP', [['BSB',  1], ['CAM', 1]] 	      									   ],
+							[ 'REC', [['NTL',  1], ['SLV', 1]] 							    			   ],
+							[ 'RJO', [['BHO',  1], ['FLO', 1], ['SJC', 1], ['SLV', 1], ['SPO', 1]] 	       ],
+							[ 'SJC', [['BHO',  1], ['CAM', 1], ['RJO', 1], ['SPO', 1]] 	   		  		   ],
+							[ 'SLV', [['NTL',  1], ['REC', 1], ['RJO', 1]]						 	       ],
+							[ 'SPO', [['COM',  1], ['CUR', 1], ['LON', 1], ['RJO', 1], ['SJC', 1]] 	       ]
+						]
+					);
+
+				}
+				else if(comboMetrica.selectedIndex == 1)//Distância geográfica:
+				{	
+					dijkstra.setGraph(
+						[
+							[ 'BAU', [['CAM',  3], ['CPG', 10], ['LOM', 3]] 	            			   ],
+							[ 'BEL', [['MAN', 18], ['NTL', 21]] 		                    			   ],
+							[ 'BHO', [['BSB',  9], ['RJO', 7], ['SJC', 7]]              			       ],
+							[ 'BLU', [['CUR',  2], ['FLO', 1], ['POA', 7]]		        			       ],
+							[ 'BSB', [['BHO',  9], ['MAN',22], ['NTL',22], ['RBP', 8]] 				       ],	
+							[ 'CAM', [['BAU',  3], ['RBP', 2], ['SJC', 2], ['SPO', 1]]  				   ],
+							[ 'CPG', [['BAU', 10], ['CUI', 8]] 	                        			       ],
+							[ 'CUI', [['CPG',  8], ['MAN',20]] 	    									   ],
+							[ 'CUR', [['BLU',  2], ['FLO', 2], ['LON', 6], ['SPO', 5]] 				       ],
+							[ 'FLO', [['BLU',  1], ['CUR', 2], ['POA', 6], ['RJO',12]] 				       ],
+							[ 'LON', [['BAU',  3], ['CUR', 6], ['SPO', 7]] 							       ],
+							[ 'MAN', [['BEL', 18], ['BSB',22], ['CUI',20]] 	    						   ],
+							[ 'NTL', [['BEL', 21], ['BSB',22], ['REC', 4], ['SLV',15]] 				       ],
+							[ 'POA', [['BLU',  7], ['FLO', 6]] 										       ],
+							[ 'RBP', [['BSB',  8], ['CAM', 2]] 	      									   ],
+							[ 'REC', [['NTL',  4], ['SLV', 8]] 							    			   ],
+							[ 'RJO', [['BHO',  7], ['FLO',12], ['SJC', 3], ['SLV',20], ['SPO', 5]] 	       ],
+							[ 'SJC', [['BHO',  7], ['CAM', 2], ['RJO', 3], ['SPO', 2]] 	   		  		   ],
+							[ 'SLV', [['NTL', 15], ['REC', 8], ['RJO', 20]]						 	       ],
+							[ 'SPO', [['COM',  1], ['CUR', 5], ['LON', 7], ['RJO', 5], ['SJC', 2]] 	       ]
+						]
+					);
+
+				}
+				else //Custo
+				{
+					dijkstra.setGraph(
+						[
+							[ 'BAU', [['CAM',  6], ['CPG', 3], ['LOM', 2]] 	            			       ],
+							[ 'BEL', [['MAN',  2], ['NTL', 3]] 		                    			       ],
+							[ 'BHO', [['BSB',  6], ['RJO', 6], ['SJC', 8]]              			       ],
+							[ 'BLU', [['CUR',  5], ['FLO', 3], ['POA', 2]]		        			       ],
+							[ 'BSB', [['BHO',  6], ['MAN', 6], ['NTL', 7], ['RBP', 4]] 				       ],	
+							[ 'CAM', [['BAU',  6], ['RBP', 4], ['SJC',10], ['SPO', 7]]  				   ],
+							[ 'CPG', [['BAU',  3], ['CUI', 2]] 	                        			       ],
+							[ 'CUI', [['CPG',  2], ['MAN', 3]] 	    									   ],
+							[ 'CUR', [['BLU',  5], ['FLO', 5], ['LON', 2], ['SPO',10]] 				       ],
+							[ 'FLO', [['BLU',  3], ['CUR', 5], ['POA', 2], ['RJO',10]] 				       ],
+							[ 'LON', [['BAU',  2], ['CUR', 2], ['SPO', 2]] 							       ],
+							[ 'MAN', [['BEL',  2], ['BSB', 6], ['CUI', 3]] 	    						   ],
+							[ 'NTL', [['BEL',  3], ['BSB', 7], ['REC', 3], ['SLV', 4]] 				       ],
+							[ 'POA', [['BLU',  2], ['FLO', 2]] 										       ],
+							[ 'RBP', [['BSB',  4], ['CAM', 4]] 	      									   ],
+							[ 'REC', [['NTL',  3], ['SLV', 2]] 							    			   ],
+							[ 'RJO', [['BHO',  6], ['FLO',10], ['SJC',10], ['SLV', 6], ['SPO',15]] 	       ],
+							[ 'SJC', [['BHO',  8], ['CAM',10], ['RJO',10], ['SPO',16]] 	   		  		   ],
+							[ 'SLV', [['NTL',  4], ['REC', 2], ['RJO', 6]]						 	       ],
+							[ 'SPO', [['COM',  7], ['CUR',10], ['LON', 2], ['RJO',15], ['SJC', 16]] 	       ]
+						]
+					);
+
+				}
+				document.getElementById("resultado").textContent = dijkstra.getPath(comboCidadesOrigem.options[comboCidadesOrigem.selectedIndex].value, comboCidadesDestino.options[comboCidadesDestino.selectedIndex].value);
+			});
+    }
+
+				
+	</script>
+	<img src="img/Mapa_Conexao.JPG" style="float:left"/> 				
+	
+	<center><div style="float:left">
+		
+		Metrica	
+		<select id="cboMetrica">
+			<option value="0">Hops</option>
+			<option value="1">Distância geográfica:</option>
+			<option value="3">Custo:</option>
+		</select>
+
+		<br><br>
+		Origem:
+		<select id="cboCidadesOrigem">
+			<option value="BAU">BAU</option>
+			<option value="BEL">BEL</option>
+			<option value="BHO">BHO</option>
+			<option value="BLU">BLU</option>
+			<option value="BSB">BSB</option>
+			<option value="CAM">CAM</option>
+			<option value="CPG">CPG</option>
+			<option value="CUI">CUI</option>
+			<option value="CUR">CUR</option>
+			<option value="FLO">FLO</option>
+			<option value="LON">LON</option>
+			<option value="MAN">MAN</option>
+			<option value="NTL">NTL</option>
+			<option value="POA">POA</option>
+			<option value="RBP">RBP</option>
+			<option value="REC">REC</option>
+			<option value="RJO">RJO</option>
+			<option value="SJC">SJC</option>
+			<option value="SLV">SLV</option>
+			<option value="SPO">SPO</option>
+		</select>
+		Destino	
+		<select id="cboCidadesDestino">
+			<option value="BAU">BAU</option>
+			<option value="BEL">BEL</option>
+			<option value="BHO">BHO</option>
+			<option value="BLU">BLU</option>
+			<option value="BSB">BSB</option>
+			<option value="CAM">CAM</option>
+			<option value="CPG">CPG</option>
+			<option value="CUI">CUI</option>
+			<option value="CUR">CUR</option>
+			<option value="FLO">FLO</option>
+			<option value="LON">LON</option>
+			<option value="MAN">MAN</option>
+			<option value="NTL">NTL</option>
+			<option value="POA">POA</option>
+			<option value="RBP">RBP</option>
+			<option value="REC">REC</option>
+			<option value="RJO">RJO</option>
+			<option value="SJC">SJC</option>
+			<option value="SLV">SLV</option>
+			<option value="SPO">SPO</option>
+		</select>
+		
+		<br><br>
+		<button id="btn" onclick="Calcular()">Calcular Rota</button>
+		<br><br>
+		<div id="resultado"></div>
+		</div>
+		</center>
+		<img src="img/Metricas.JPG" style="float:left"/> 				
+		
+
+
+
+		
+		
+		
 	</body>
 </html>

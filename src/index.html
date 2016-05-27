@@ -42,20 +42,7 @@
 		
 	<script>
 	
-	   	function Calcular()
-	    {
-	    	var comboCidadesOrigem = document.getElementById("cboCidadesOrigem");
-			var comboCidadesDestino = document.getElementById("cboCidadesDestino");    
-			var comboMetrica = document.getElementById("cboMetrica");
-	    
-			$(function ()
-			{
-				var dijkstra = new Dijkstra();
-								
-				if(comboMetrica.selectedIndex == 0)//Hops
-				{
-					dijkstra.setGraph(
-						[
+		var vHops = 	[
 							[ 'BAU', [['CAM',  1], ['CPG', 1], ['LOM', 1]] 	            			       ],
 							[ 'BEL', [['MAN',  1], ['NTL', 1]] 		                    			       ],
 							[ 'BHO', [['BSB',  1], ['RJO', 1], ['SJC', 1]]              			       ],
@@ -76,14 +63,9 @@
 							[ 'SJC', [['BHO',  1], ['CAM', 1], ['RJO', 1], ['SPO', 1]] 	   		  		   ],
 							[ 'SLV', [['NTL',  1], ['REC', 1], ['RJO', 1]]						 	       ],
 							[ 'SPO', [['COM',  1], ['CUR', 1], ['LON', 1], ['RJO', 1], ['SJC', 1]] 	       ]
-						]
-					);
-
-				}
-				else if(comboMetrica.selectedIndex == 1)//Distância geográfica:
-				{	
-					dijkstra.setGraph(
-						[
+						]; 
+						
+		var vDistaciaGeo = [
 							[ 'BAU', [['CAM',  3], ['CPG', 10], ['LOM', 3]] 	            			   ],
 							[ 'BEL', [['MAN', 18], ['NTL', 21]] 		                    			   ],
 							[ 'BHO', [['BSB',  9], ['RJO', 7], ['SJC', 7]]              			       ],
@@ -104,14 +86,9 @@
 							[ 'SJC', [['BHO',  7], ['CAM', 2], ['RJO', 3], ['SPO', 2]] 	   		  		   ],
 							[ 'SLV', [['NTL', 15], ['REC', 8], ['RJO', 20]]						 	       ],
 							[ 'SPO', [['COM',  1], ['CUR', 5], ['LON', 7], ['RJO', 5], ['SJC', 2]] 	       ]
-						]
-					);
-
-				}
-				else //Custo
-				{
-					dijkstra.setGraph(
-						[
+						];
+		
+		var vCusto =    [
 							[ 'BAU', [['CAM',  6], ['CPG', 3], ['LOM', 2]] 	            			       ],
 							[ 'BEL', [['MAN',  2], ['NTL', 3]] 		                    			       ],
 							[ 'BHO', [['BSB',  6], ['RJO', 6], ['SJC', 8]]              			       ],
@@ -131,15 +108,302 @@
 							[ 'RJO', [['BHO',  6], ['FLO',10], ['SJC',10], ['SLV', 6], ['SPO',15]] 	       ],
 							[ 'SJC', [['BHO',  8], ['CAM',10], ['RJO',10], ['SPO',16]] 	   		  		   ],
 							[ 'SLV', [['NTL',  4], ['REC', 2], ['RJO', 6]]						 	       ],
-							[ 'SPO', [['COM',  7], ['CUR',10], ['LON', 2], ['RJO',15], ['SJC', 16]] 	       ]
-						]
-					);
+							[ 'SPO', [['COM',  7], ['CUR',10], ['LON', 2], ['RJO',15], ['SJC', 16]] 	   ]
+						];
+						
+		var vHopsAux = vHops.slice();
+		var vDistaciaGeoAux = vDistaciaGeo.slice();
+		var vCustoAux = vCusto.slice();
+						
+		
+		function Remover()
+		{
+										//Adiciona os que desmarcados
+			if(!BAU.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="BAU">BAU</option>');
+				$("#cboCidadesDestino").append('<option value="BAU">BAU</option>');													
+			}
+			else
+			{
+				vHops.splice(0,1,['--',1]);						
+			}
+			if(!BEL.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="BEL">BEL</option>');
+				$("#cboCidadesDestino").append('<option value="BEL">BEL</option>');								
+			}
+			else
+			{							
+				vHops.splice(1,1,['--',1]);						
+			}
+			if(!BHO.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="BHO">BHO</option>');
+				$("#cboCidadesDestino").append('<option value="BHO">BHO</option>');				
+			}
+			else
+			{
+				vHops.splice(2,1,['--',1]);						
+			}
+			if(!BLU.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="BLU">BLU</option>');
+				$("#cboCidadesDestino").append('<option value="BLU">BLU</option>');
+			}
+			else
+			{
+				vHops.splice(3,1,['--',1]);						
+			}
+			if(!BSB.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="BSB">BSB</option>');
+				$("#cboCidadesDestino").append('<option value="BSB">BSB</option>');
+			}
+			else
+			{
+				vHops.splice(4,1,['--',1]);						
+			}
+			if(!CAM.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="CAM">CAM</option>');
+				$("#cboCidadesDestino").append('<option value="CAM">CAM</option>');
+			}
+			else
+			{
+				vHops.splice(5,1,['--',1]);						
+			}
+			if(!CPG.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="CPG">CPG</option>');
+				$("#cboCidadesDestino").append('<option value="CPG">CPG</option>');
+			}
+			else
+			{
+				vHops.splice(6,1,['--',1]);						
+			}
+			if(!CUI.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="CUI">CUI</option>');
+				$("#cboCidadesDestino").append('<option value="CUI">CUI</option>');
+			}
+			else
+			{
+				vHops.splice(7,1,['--',1]);						
+			}
+			if(!CUR.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="CUR">CUR</option>');
+				$("#cboCidadesDestino").append('<option value="CUR">CUR</option>');
+			}
+			else
+			{
+				vHops.splice(8,1,['--',1]);						
+			}
+			if(!FLO.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="FLO">FLO</option>');
+				$("#cboCidadesDestino").append('<option value="FLO">FLO</option>');
+			}
+			else
+			{
+				vHops.splice(9,1,['--',1]);						
+			}
+			if(!LON.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="LON">LON</option>');
+				$("#cboCidadesDestino").append('<option value="LON">LON</option>');
+			}
+			else
+			{
+				vHops.splice(10,1,['--',1]);						
+			}
+			if(!MAN.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="MAN">MAN</option>');
+				$("#cboCidadesDestino").append('<option value="MAN">MAN</option>');
+			}
+			else
+			{
+				vHops.splice(11,1,['--',1]);						
+			}
+			if(!NTL.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="NTL">NTL</option>');
+				$("#cboCidadesDestino").append('<option value="NTL">NTL</option>');
+			}
+			else
+			{
+				vHops.splice(12,1,['--',1]);						
+			}
+			if(!POA.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="POA">POA</option>');
+				$("#cboCidadesDestino").append('<option value="POA">POA</option>');
+			}
+			else
+			{
+				vHops.splice(13,1,['--',1]);						
+			}
+			if(!RBP.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="RBP">RBP</option>');
+				$("#cboCidadesDestino").append('<option value="RBP">RBP</option>');
+			}
+			else
+			{
+				vHops.splice(14,1,['--',1]);						
+			}
+			if(!REC.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="REC">REC</option>');
+				$("#cboCidadesDestino").append('<option value="REC">REC</option>');
+			}
+			else
+			{
+				vHops.splice(15,1,['--',1]);						
+			}
+			if(!RJO.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="RJO">RJO</option>');
+				$("#cboCidadesDestino").append('<option value="RJO">RJO</option>');
+			}
+			else
+			{
+				vHops.splice(16,1,['--',1]);						
+			}
+			if(!SJC.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="SJC">SJC</option>');
+				$("#cboCidadesDestino").append('<option value="SJC">SJC</option>');
+			}
+			else
+			{
+				vHops.splice(17,1,['--',1]);						
+			}
+			if(!SLV.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="SLV">SLV</option>');
+				$("#cboCidadesDestino").append('<option value="SLV">SLV</option>');
+			}
+			else
+			{
+				vHops.splice(18,1,['--',1]);						
+			}
+			if(!SPO.checked)
+			{
+				$("#cboCidadesOrigem").append('<option value="SPO">SPO</option>');
+				$("#cboCidadesDestino").append('<option value="SPO">SPO</option>');
+			}
+			else
+			{
+				vHops.splice(19,1,['--',1]);						
+			}
+		
+		}
+		
+		function RemoverListaComboBox()
+		{					
+			
+			var comboCidadesOrigem = document.getElementById("cboCidadesOrigem");
+			var comboCidadesDestino = document.getElementById("cboCidadesDestino");    
+			var comboMetrica = document.getElementById("cboMetrica");
+			
+			var OrigemAux = comboCidadesOrigem.selectedIndex;
+			var DestinoAux = comboCidadesDestino.selectedIndex;
+			var MetricaAux = comboMetrica.selectedIndex;
+			
+			$("#cboCidadesOrigem option[value='BAU']").remove();
+			$("#cboCidadesOrigem option[value='BEL']").remove();
+			$("#cboCidadesOrigem option[value='BHO']").remove();
+			$("#cboCidadesOrigem option[value='BLU']").remove();
+			$("#cboCidadesOrigem option[value='BSB']").remove();
+			$("#cboCidadesOrigem option[value='CAM']").remove();
+			$("#cboCidadesOrigem option[value='CPG']").remove();
+			$("#cboCidadesOrigem option[value='CUI']").remove();
+			$("#cboCidadesOrigem option[value='CUR']").remove();
+			$("#cboCidadesOrigem option[value='FLO']").remove();
+			$("#cboCidadesOrigem option[value='LON']").remove();
+			$("#cboCidadesOrigem option[value='MAN']").remove();
+			$("#cboCidadesOrigem option[value='NTL']").remove();
+			$("#cboCidadesOrigem option[value='POA']").remove();
+			$("#cboCidadesOrigem option[value='RBP']").remove();
+			$("#cboCidadesOrigem option[value='REC']").remove();
+			$("#cboCidadesOrigem option[value='RJO']").remove();
+			$("#cboCidadesOrigem option[value='SJC']").remove();
+			$("#cboCidadesOrigem option[value='SLV']").remove();
+			$("#cboCidadesOrigem option[value='SPO']").remove();
+			
+			$("#cboCidadesDestino option[value='BAU']").remove();
+			$("#cboCidadesDestino option[value='BEL']").remove();
+			$("#cboCidadesDestino option[value='BHO']").remove();
+			$("#cboCidadesDestino option[value='BLU']").remove();
+			$("#cboCidadesDestino option[value='BSB']").remove();
+			$("#cboCidadesDestino option[value='CAM']").remove();
+			$("#cboCidadesDestino option[value='CPG']").remove();
+			$("#cboCidadesDestino option[value='CUI']").remove();
+			$("#cboCidadesDestino option[value='CUR']").remove();
+			$("#cboCidadesDestino option[value='FLO']").remove();
+			$("#cboCidadesDestino option[value='LON']").remove();
+			$("#cboCidadesDestino option[value='MAN']").remove();
+			$("#cboCidadesDestino option[value='NTL']").remove();
+			$("#cboCidadesDestino option[value='POA']").remove();
+			$("#cboCidadesDestino option[value='RBP']").remove();
+			$("#cboCidadesDestino option[value='REC']").remove();
+			$("#cboCidadesDestino option[value='RJO']").remove();
+			$("#cboCidadesDestino option[value='SJC']").remove();
+			$("#cboCidadesDestino option[value='SLV']").remove();
+			$("#cboCidadesDestino option[value='SPO']").remove();
+			
+			Remover();							
+			
+			comboCidadesOrigem.options[OrigemAux-1].selected = true;
+			comboCidadesDestino.options[DestinoAux-1].selected = true;
+			comboMetrica.options[MetricaAux-1].selected = true;
+			
+		}
+		
+	
+	   	function Calcular()
+	    {
+		
+			Remover();
+			
+			var comboCidadesOrigem = document.getElementById("cboCidadesOrigem");
+			var comboCidadesDestino = document.getElementById("cboCidadesDestino");    
+			var comboMetrica = document.getElementById("cboMetrica");
+										    
+			$(function ()
+			{
+				var dijkstra = new Dijkstra();
+								
+								
+				if(comboMetrica.selectedIndex == 0)//Hops
+				{
+					dijkstra.setGraph(vHops);
+
+				}
+				else if(comboMetrica.selectedIndex == 1)//Distância geográfica:
+				{	
+					dijkstra.setGraph(vDistaciaGeo);
+
+				}
+				else //Custo
+				{
+					dijkstra.setGraph(vCusto);
 
 				}
 				document.getElementById("resultado").textContent = dijkstra.getPath(comboCidadesOrigem.options[comboCidadesOrigem.selectedIndex].value, comboCidadesDestino.options[comboCidadesDestino.selectedIndex].value);
+				
+				
+				console.log(vHops);
+				
+				vHops = vHopsAux.slice();
+				
 			});
     }
-
+	
+	
 				
 	</script>
 	<img src="img/Mapa_Conexao.JPG" style="float:left"/> 				
@@ -207,8 +471,30 @@
 		<div id="resultado"></div>
 		</div>
 		</center>
-		<img src="img/Metricas.JPG" style="float:left"/> 				
-		
+		<img src="img/Metricas.JPG" style="float:left"/> 		
+		<h4 class="text-center">Remover</h4>
+		<div class="text-center">
+		BAU <input type="checkbox" id="BAU" onclick="RemoverListaComboBox()"><br>
+		BEL <input type="checkbox" id="BEL" onclick="RemoverListaComboBox()"><br>
+		BHO <input type="checkbox" id="BHO" onclick="RemoverListaComboBox()"><br>
+		BLU <input type="checkbox" id="BLU" onclick="RemoverListaComboBox()"><br>
+		BSB <input type="checkbox" id="BSB" onclick="RemoverListaComboBox()"><br>
+		CAM <input type="checkbox" id="CAM" onclick="RemoverListaComboBox()"><br>
+		CPG <input type="checkbox" id="CPG" onclick="RemoverListaComboBox()"><br>
+		CUI <input type="checkbox" id="CUI" onclick="RemoverListaComboBox()"><br>
+		CUR <input type="checkbox" id="CUR" onclick="RemoverListaComboBox()"><br>
+		FLO <input type="checkbox" id="FLO" onclick="RemoverListaComboBox()"><br>
+		LON <input type="checkbox" id="LON" onclick="RemoverListaComboBox()"><br>
+		MAN <input type="checkbox" id="MAN" onclick="RemoverListaComboBox()"><br>
+		NTL <input type="checkbox" id="NTL" onclick="RemoverListaComboBox()"><br>
+		POA <input type="checkbox" id="POA" onclick="RemoverListaComboBox()"><br>
+		RBP <input type="checkbox" id="RBP" onclick="RemoverListaComboBox()"><br>
+		REC <input type="checkbox" id="REC" onclick="RemoverListaComboBox()"><br>
+		RJO <input type="checkbox" id="RJO" onclick="RemoverListaComboBox()"><br>
+		SJC <input type="checkbox" id="SJC" onclick="RemoverListaComboBox()"><br>
+		SLV <input type="checkbox" id="SLV" onclick="RemoverListaComboBox()"><br>
+		SPO <input type="checkbox" id="SPO" onclick="RemoverListaComboBox()"><br>
+		<div>
 
 
 

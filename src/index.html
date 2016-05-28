@@ -41,7 +41,7 @@
 		
 		
 	<script>
-	
+						              						//Hops
 		var vHops = 	[
 							[ 'BAU', [['CAM',  1], ['CPG', 1], ['LOM', 1]] 	            			       ],
 							[ 'BEL', [['MAN',  1], ['NTL', 1]] 		                    			       ],
@@ -64,7 +64,7 @@
 							[ 'SLV', [['NTL',  1], ['REC', 1], ['RJO', 1]]						 	       ],
 							[ 'SPO', [['COM',  1], ['CUR', 1], ['LON', 1], ['RJO', 1], ['SJC', 1]] 	       ]
 						]; 
-						
+														//Distancia Geografica	
 		var vDistaciaGeo = [
 							[ 'BAU', [['CAM',  3], ['CPG', 10], ['LOM', 3]] 	            			   ],
 							[ 'BEL', [['MAN', 18], ['NTL', 21]] 		                    			   ],
@@ -87,7 +87,7 @@
 							[ 'SLV', [['NTL', 15], ['REC', 8], ['RJO', 20]]						 	       ],
 							[ 'SPO', [['COM',  1], ['CUR', 5], ['LON', 7], ['RJO', 5], ['SJC', 2]] 	       ]
 						];
-		
+															//Custo
 		var vCusto =    [
 							[ 'BAU', [['CAM',  6], ['CPG', 3], ['LOM', 2]] 	            			       ],
 							[ 'BEL', [['MAN',  2], ['NTL', 3]] 		                    			       ],
@@ -114,265 +114,358 @@
 		var vHopsAux = vHops.slice();
 		var vDistaciaGeoAux = vDistaciaGeo.slice();
 		var vCustoAux = vCusto.slice();
-						
 		
-		function Remover()
+		function Validar(verticeRemv) //Valida se remoção do vertice é origem ou destino
 		{
-										//Adiciona os que desmarcados
-			if(!BAU.checked)
+			var comboCidadesOrigem = document.getElementById("cboCidadesOrigem");
+			var comboCidadesDestino = document.getElementById("cboCidadesDestino");
+			
+			console.log('Parametro passado pra funcao '+verticeRemv); 
+			
+			if(comboCidadesOrigem.selectedIndex == verticeRemv || comboCidadesDestino.selectedIndex == verticeRemv)
 			{
-				$("#cboCidadesOrigem").append('<option value="BAU">BAU</option>');
-				$("#cboCidadesDestino").append('<option value="BAU">BAU</option>');													
+				alert('Voce nao pode remover um vertice Origem ou Destino')
+				return false;
 			}
 			else
 			{
-				vHops.splice(0,1,['--',1]);						
+				console.log('Tudo certo')
+				return true;
 			}
-			if(!BEL.checked)
+		}
+						
+		
+		function Remover() //Remove vertices
+		{
+										
+			if(!BAU.checked || !Validar(0))
 			{
-				$("#cboCidadesOrigem").append('<option value="BEL">BEL</option>');
-				$("#cboCidadesDestino").append('<option value="BEL">BEL</option>');								
+				document.getElementById("cboCidadesOrigem").options[0].disabled = false;
+				document.getElementById("cboCidadesDestino").options[0].disabled = false;	
+				BAU.checked = false;
+				console.log('blz nao foi removido');
+			}
+			else
+			{
+				console.log('Foi removido');
+				vHops.splice(0,1,['--',1]);
+				vDistaciaGeo.splice(0,1,['--',1]);										
+				vCusto.splice(0,1,['--',1]);										
+			}
+			if(!BEL.checked || !Validar(1))
+			{
+				document.getElementById("cboCidadesOrigem").options[1].disabled = false;
+				document.getElementById("cboCidadesDestino").options[1].disabled = false;
+				BEL.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{							
-				vHops.splice(1,1,['--',1]);						
+				vHops.splice(1,1,['--',1]);	
+				vDistaciaGeo.splice(1,1,['--',1]);										
+				vCusto.splice(1,1,['--',1])								
 			}
-			if(!BHO.checked)
+			if(!BHO.checked || !Validar(2))
 			{
-				$("#cboCidadesOrigem").append('<option value="BHO">BHO</option>');
-				$("#cboCidadesDestino").append('<option value="BHO">BHO</option>');				
+				document.getElementById("cboCidadesOrigem").options[2].disabled = false;
+				document.getElementById("cboCidadesDestino").options[2].disabled = false;				
+				BHO.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(2,1,['--',1]);						
+				vHops.splice(2,1,['--',1]);				
+				vDistaciaGeo.splice(2,1,['--',1]);										
+				vCusto.splice(2,1,['--',1])				
 			}
-			if(!BLU.checked)
+			if(!BLU.checked || !Validar(3))
 			{
-				$("#cboCidadesOrigem").append('<option value="BLU">BLU</option>');
-				$("#cboCidadesDestino").append('<option value="BLU">BLU</option>');
+				document.getElementById("cboCidadesOrigem").options[3].disabled = false;
+				document.getElementById("cboCidadesDestino").options[3].disabled = false;
+				BLU.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
 				vHops.splice(3,1,['--',1]);						
+				vDistaciaGeo.splice(3,1,['--',1]);										
+				vCusto.splice(3,1,['--',1])
 			}
-			if(!BSB.checked)
+			if(!BSB.checked || !Validar(4))
 			{
-				$("#cboCidadesOrigem").append('<option value="BSB">BSB</option>');
-				$("#cboCidadesDestino").append('<option value="BSB">BSB</option>');
-			}
-			else
-			{
-				vHops.splice(4,1,['--',1]);						
-			}
-			if(!CAM.checked)
-			{
-				$("#cboCidadesOrigem").append('<option value="CAM">CAM</option>');
-				$("#cboCidadesDestino").append('<option value="CAM">CAM</option>');
+				document.getElementById("cboCidadesOrigem").options[4].disabled = false;
+				document.getElementById("cboCidadesDestino").options[4].disabled = false;
+				BSB.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(5,1,['--',1]);						
+				vHops.splice(4,1,['--',1]);
+				vDistaciaGeo.splice(4,1,['--',1]);										
+				vCusto.splice(4,1,['--',1])				
 			}
-			if(!CPG.checked)
+			if(!CAM.checked || !Validar(5))
 			{
-				$("#cboCidadesOrigem").append('<option value="CPG">CPG</option>');
-				$("#cboCidadesDestino").append('<option value="CPG">CPG</option>');
-			}
-			else
-			{
-				vHops.splice(6,1,['--',1]);						
-			}
-			if(!CUI.checked)
-			{
-				$("#cboCidadesOrigem").append('<option value="CUI">CUI</option>');
-				$("#cboCidadesDestino").append('<option value="CUI">CUI</option>');
+				document.getElementById("cboCidadesOrigem").options[5].disabled = false;
+				document.getElementById("cboCidadesDestino").options[5].disabled = false;
+				CAM.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(7,1,['--',1]);						
+				vHops.splice(5,1,['--',1]);				
+				vDistaciaGeo.splice(5,1,['--',1]);										
+				vCusto.splice(5,1,['--',1])								
 			}
-			if(!CUR.checked)
+			if(!CPG.checked || !Validar(6))
 			{
-				$("#cboCidadesOrigem").append('<option value="CUR">CUR</option>');
-				$("#cboCidadesDestino").append('<option value="CUR">CUR</option>');
-			}
-			else
-			{
-				vHops.splice(8,1,['--',1]);						
-			}
-			if(!FLO.checked)
-			{
-				$("#cboCidadesOrigem").append('<option value="FLO">FLO</option>');
-				$("#cboCidadesDestino").append('<option value="FLO">FLO</option>');
+				document.getElementById("cboCidadesOrigem").options[6].disabled = false;
+				document.getElementById("cboCidadesDestino").options[6].disabled = false;
+				CPG.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(9,1,['--',1]);						
+				vHops.splice(6,1,['--',1]);
+				vDistaciaGeo.splice(6,1,['--',1]);										
+				vCusto.splice(6,1,['--',1])		
 			}
-			if(!LON.checked)
+			if(!CUI.checked || !Validar(7))
 			{
-				$("#cboCidadesOrigem").append('<option value="LON">LON</option>');
-				$("#cboCidadesDestino").append('<option value="LON">LON</option>');
+				document.getElementById("cboCidadesOrigem").options[7].disabled = false;
+				document.getElementById("cboCidadesDestino").options[7].disabled = false;	
+				CUI.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(10,1,['--',1]);						
+				vHops.splice(7,1,['--',1]);
+				vDistaciaGeo.splice(7,1,['--',1]);										
+				vCusto.splice(7,1,['--',1])				
 			}
-			if(!MAN.checked)
+			if(!CUR.checked || !Validar(8))
 			{
-				$("#cboCidadesOrigem").append('<option value="MAN">MAN</option>');
-				$("#cboCidadesDestino").append('<option value="MAN">MAN</option>');
+				document.getElementById("cboCidadesOrigem").options[8].disabled = false;
+				document.getElementById("cboCidadesDestino").options[8].disabled = false;	
+				CUR.checked = false;
+				console.log('blz nao foi removido');
+			}
+			else
+			{
+				vHops.splice(8,1,['--',1]);
+				vDistaciaGeo.splice(8,1,['--',1]);										
+				vCusto.splice(8,1,['--',1])				
+			}
+			if(!FLO.checked || !Validar(9))
+			{
+				document.getElementById("cboCidadesOrigem").options[9].disabled = false;
+				document.getElementById("cboCidadesDestino").options[9].disabled = false;	
+				FLO.checked = false;
+				console.log('blz nao foi removido');
+			}
+			else
+			{
+				vHops.splice(9,1,['--',1]);
+				vDistaciaGeo.splice(9,1,['--',1]);										
+				vCusto.splice(9,1,['--',1])				
+			}
+			if(!LON.checked || !Validar(10))
+			{
+				document.getElementById("cboCidadesOrigem").options[10].disabled = false;
+				document.getElementById("cboCidadesDestino").options[10].disabled = false;	
+				LON.checked = false;
+				console.log('blz nao foi removido');
+			}
+			else
+			{
+				vHops.splice(10,1,['--',1]);
+				vDistaciaGeo.splice(10,1,['--',1]);										
+				vCusto.splice(10,1,['--',1])				
+			}
+			if(!MAN.checked || !Validar(11))
+			{
+				document.getElementById("cboCidadesOrigem").options[11].disabled = false;
+				document.getElementById("cboCidadesDestino").options[11].disabled = false;	
+				MAN.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
 				vHops.splice(11,1,['--',1]);						
+				vDistaciaGeo.splice(11,1,['--',1]);										
+				vCusto.splice(11,1,['--',1])				
 			}
-			if(!NTL.checked)
+			if(!NTL.checked || !Validar(12))
 			{
-				$("#cboCidadesOrigem").append('<option value="NTL">NTL</option>');
-				$("#cboCidadesDestino").append('<option value="NTL">NTL</option>');
+				document.getElementById("cboCidadesOrigem").options[12].disabled = false;
+				document.getElementById("cboCidadesDestino").options[12].disabled = false;	
+				NTL.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
 				vHops.splice(12,1,['--',1]);						
+				vDistaciaGeo.splice(12,1,['--',1]);										
+				vCusto.splice(12,1,['--',1])				
 			}
-			if(!POA.checked)
+			if(!POA.checked || !Validar(13))
 			{
-				$("#cboCidadesOrigem").append('<option value="POA">POA</option>');
-				$("#cboCidadesDestino").append('<option value="POA">POA</option>');
+				document.getElementById("cboCidadesOrigem").options[13].disabled = false;
+				document.getElementById("cboCidadesDestino").options[13].disabled = false;	
+				POA.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(13,1,['--',1]);						
+				vHops.splice(13,1,['--',1]);
+				vDistaciaGeo.splice(13,1,['--',1]);										
+				vCusto.splice(13,1,['--',1])				
 			}
-			if(!RBP.checked)
+			if(!RBP.checked || !Validar(14))
 			{
-				$("#cboCidadesOrigem").append('<option value="RBP">RBP</option>');
-				$("#cboCidadesDestino").append('<option value="RBP">RBP</option>');
+				document.getElementById("cboCidadesOrigem").options[14].disabled = false;
+				document.getElementById("cboCidadesDestino").options[14].disabled = false;	
+				RBP.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(14,1,['--',1]);						
+				vHops.splice(14,1,['--',1]);
+				vDistaciaGeo.splice(14,1,['--',1]);										
+				vCusto.splice(14,1,['--',1])				
 			}
-			if(!REC.checked)
+			if(!REC.checked || !Validar(15))
 			{
-				$("#cboCidadesOrigem").append('<option value="REC">REC</option>');
-				$("#cboCidadesDestino").append('<option value="REC">REC</option>');
+				document.getElementById("cboCidadesOrigem").options[15].disabled = false;
+				document.getElementById("cboCidadesDestino").options[15].disabled = false;	
+				REC.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(15,1,['--',1]);						
+				vHops.splice(15,1,['--',1]);
+				vDistaciaGeo.splice(15,1,['--',1]);										
+				vCusto.splice(15,1,['--',1])				
 			}
-			if(!RJO.checked)
+			if(!RJO.checked || !Validar(16))
 			{
-				$("#cboCidadesOrigem").append('<option value="RJO">RJO</option>');
-				$("#cboCidadesDestino").append('<option value="RJO">RJO</option>');
+				document.getElementById("cboCidadesOrigem").options[16].disabled = false;
+				document.getElementById("cboCidadesDestino").options[16].disabled = false;	
+				RJO.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(16,1,['--',1]);						
+				vHops.splice(16,1,['--',1]);
+				vDistaciaGeo.splice(16,1,['--',1]);										
+				vCusto.splice(16,1,['--',1])				
 			}
-			if(!SJC.checked)
+			if(!SJC.checked || !Validar(17))
 			{
-				$("#cboCidadesOrigem").append('<option value="SJC">SJC</option>');
-				$("#cboCidadesDestino").append('<option value="SJC">SJC</option>');
+				document.getElementById("cboCidadesOrigem").options[17].disabled = false;
+				document.getElementById("cboCidadesDestino").options[17].disabled = false;	
+				SJC.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(17,1,['--',1]);						
+				vHops.splice(17,1,['--',1]);
+				vDistaciaGeo.splice(17,1,['--',1]);										
+				vCusto.splice(17,1,['--',1])				
 			}
-			if(!SLV.checked)
+			if(!SLV.checked || !Validar(18))
 			{
-				$("#cboCidadesOrigem").append('<option value="SLV">SLV</option>');
-				$("#cboCidadesDestino").append('<option value="SLV">SLV</option>');
+				document.getElementById("cboCidadesOrigem").options[18].disabled = false;
+				document.getElementById("cboCidadesDestino").options[18].disabled = false;	
+				SLV.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(18,1,['--',1]);						
+				vHops.splice(18,1,['--',1]);
+				vDistaciaGeo.splice(18,1,['--',1]);										
+				vCusto.splice(18,1,['--',1])				
 			}
-			if(!SPO.checked)
+			if(!SPO.checked || !Validar(19))
 			{
-				$("#cboCidadesOrigem").append('<option value="SPO">SPO</option>');
-				$("#cboCidadesDestino").append('<option value="SPO">SPO</option>');
+				document.getElementById("cboCidadesOrigem").options[19].disabled = false;
+				document.getElementById("cboCidadesDestino").options[19].disabled = false;	
+				SPO.checked = false;
+				console.log('blz nao foi removido');
 			}
 			else
 			{
-				vHops.splice(19,1,['--',1]);						
+				vHops.splice(19,1,['--',1]);
+				vDistaciaGeo.splice(19,1,['--',1]);										
+				vCusto.splice(19,1,['--',1])				
 			}
+			
+			console.log(vHops);
 		
 		}
 		
-		function RemoverListaComboBox()
-		{					
+		function RemoverListaComboBox()    //Inativas as opçoes do combobox
+		{								
 			
-			var comboCidadesOrigem = document.getElementById("cboCidadesOrigem");
-			var comboCidadesDestino = document.getElementById("cboCidadesDestino");    
-			var comboMetrica = document.getElementById("cboMetrica");
+			document.getElementById("cboCidadesOrigem").options[0].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[1].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[2].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[3].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[4].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[5].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[6].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[7].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[8].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[9].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[10].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[11].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[12].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[13].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[14].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[15].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[16].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[17].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[18].disabled = true;
+			document.getElementById("cboCidadesOrigem").options[19].disabled = true;
 			
-			var OrigemAux = comboCidadesOrigem.selectedIndex;
-			var DestinoAux = comboCidadesDestino.selectedIndex;
-			var MetricaAux = comboMetrica.selectedIndex;
+			document.getElementById("cboCidadesDestino").options[0].disabled = true;
+			document.getElementById("cboCidadesDestino").options[1].disabled = true;
+			document.getElementById("cboCidadesDestino").options[2].disabled = true;
+			document.getElementById("cboCidadesDestino").options[3].disabled = true;
+			document.getElementById("cboCidadesDestino").options[4].disabled = true;
+			document.getElementById("cboCidadesDestino").options[5].disabled = true;
+			document.getElementById("cboCidadesDestino").options[6].disabled = true;
+			document.getElementById("cboCidadesDestino").options[7].disabled = true;
+			document.getElementById("cboCidadesDestino").options[8].disabled = true;
+			document.getElementById("cboCidadesDestino").options[9].disabled = true;
+			document.getElementById("cboCidadesDestino").options[10].disabled = true;
+			document.getElementById("cboCidadesDestino").options[11].disabled = true;
+			document.getElementById("cboCidadesDestino").options[12].disabled = true;
+			document.getElementById("cboCidadesDestino").options[13].disabled = true;
+			document.getElementById("cboCidadesDestino").options[14].disabled = true;
+			document.getElementById("cboCidadesDestino").options[15].disabled = true;
+			document.getElementById("cboCidadesDestino").options[16].disabled = true;
+			document.getElementById("cboCidadesDestino").options[17].disabled = true;
+			document.getElementById("cboCidadesDestino").options[18].disabled = true;
+			document.getElementById("cboCidadesDestino").options[19].disabled = true;
 			
-			$("#cboCidadesOrigem option[value='BAU']").remove();
-			$("#cboCidadesOrigem option[value='BEL']").remove();
-			$("#cboCidadesOrigem option[value='BHO']").remove();
-			$("#cboCidadesOrigem option[value='BLU']").remove();
-			$("#cboCidadesOrigem option[value='BSB']").remove();
-			$("#cboCidadesOrigem option[value='CAM']").remove();
-			$("#cboCidadesOrigem option[value='CPG']").remove();
-			$("#cboCidadesOrigem option[value='CUI']").remove();
-			$("#cboCidadesOrigem option[value='CUR']").remove();
-			$("#cboCidadesOrigem option[value='FLO']").remove();
-			$("#cboCidadesOrigem option[value='LON']").remove();
-			$("#cboCidadesOrigem option[value='MAN']").remove();
-			$("#cboCidadesOrigem option[value='NTL']").remove();
-			$("#cboCidadesOrigem option[value='POA']").remove();
-			$("#cboCidadesOrigem option[value='RBP']").remove();
-			$("#cboCidadesOrigem option[value='REC']").remove();
-			$("#cboCidadesOrigem option[value='RJO']").remove();
-			$("#cboCidadesOrigem option[value='SJC']").remove();
-			$("#cboCidadesOrigem option[value='SLV']").remove();
-			$("#cboCidadesOrigem option[value='SPO']").remove();
-			
-			$("#cboCidadesDestino option[value='BAU']").remove();
-			$("#cboCidadesDestino option[value='BEL']").remove();
-			$("#cboCidadesDestino option[value='BHO']").remove();
-			$("#cboCidadesDestino option[value='BLU']").remove();
-			$("#cboCidadesDestino option[value='BSB']").remove();
-			$("#cboCidadesDestino option[value='CAM']").remove();
-			$("#cboCidadesDestino option[value='CPG']").remove();
-			$("#cboCidadesDestino option[value='CUI']").remove();
-			$("#cboCidadesDestino option[value='CUR']").remove();
-			$("#cboCidadesDestino option[value='FLO']").remove();
-			$("#cboCidadesDestino option[value='LON']").remove();
-			$("#cboCidadesDestino option[value='MAN']").remove();
-			$("#cboCidadesDestino option[value='NTL']").remove();
-			$("#cboCidadesDestino option[value='POA']").remove();
-			$("#cboCidadesDestino option[value='RBP']").remove();
-			$("#cboCidadesDestino option[value='REC']").remove();
-			$("#cboCidadesDestino option[value='RJO']").remove();
-			$("#cboCidadesDestino option[value='SJC']").remove();
-			$("#cboCidadesDestino option[value='SLV']").remove();
-			$("#cboCidadesDestino option[value='SPO']").remove();
-			
-			Remover();							
-			
-			comboCidadesOrigem.options[OrigemAux-1].selected = true;
-			comboCidadesDestino.options[DestinoAux-1].selected = true;
-			comboMetrica.options[MetricaAux-1].selected = true;
-			
+			Remover();				
+				
 		}
 		
 	
-	   	function Calcular()
+	   	function Calcular() // Executa o calculo do caminho minimo
 	    {
 		
-			Remover();
+			Remover();	
+			
 			
 			var comboCidadesOrigem = document.getElementById("cboCidadesOrigem");
 			var comboCidadesDestino = document.getElementById("cboCidadesDestino");    
 			var comboMetrica = document.getElementById("cboMetrica");
-										    
+			
+			RemoverListaComboBox(); 	
+			
 			$(function ()
 			{
 				var dijkstra = new Dijkstra();
@@ -380,17 +473,17 @@
 								
 				if(comboMetrica.selectedIndex == 0)//Hops
 				{
-					dijkstra.setGraph(vHops);
+					dijkstra.setGraph(vHops);					
 
 				}
 				else if(comboMetrica.selectedIndex == 1)//Distância geográfica:
 				{	
-					dijkstra.setGraph(vDistaciaGeo);
+					dijkstra.setGraph(vDistaciaGeo);					
 
 				}
 				else //Custo
 				{
-					dijkstra.setGraph(vCusto);
+					dijkstra.setGraph(vCusto);					
 
 				}
 				document.getElementById("resultado").textContent = dijkstra.getPath(comboCidadesOrigem.options[comboCidadesOrigem.selectedIndex].value, comboCidadesDestino.options[comboCidadesDestino.selectedIndex].value);
@@ -399,6 +492,8 @@
 				console.log(vHops);
 				
 				vHops = vHopsAux.slice();
+				vDistaciaGeo = vDistaciaGeoAux.slice();
+				vCusto = vCustoAux.slice();
 				
 			});
     }
@@ -413,7 +508,7 @@
 		Metrica	
 		<select id="cboMetrica">
 			<option value="0">Hops</option>
-			<option value="1">Distância geográfica:</option>
+			<option value="1">Distancia Geografica:</option>
 			<option value="3">Custo:</option>
 		</select>
 

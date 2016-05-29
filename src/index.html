@@ -23,8 +23,211 @@
 		<![endif]-->
 	</head>
 	<body>
-		<h1 class="text-center">Caminho Minimo</h1>
+		<h1 class="text-center">Caminho M√≠nimo</h1>
+	
 
+		<div class="col-md-4">
+			<h3 class="text-center">Configura√ß√µes</h3>
+			<div class="form-group">
+				<label for="cboMetrica">M√©trica</label>	
+				<select id="cboMetrica" name="cboMetrica" class="form-control">
+					<option value="0">Hops</option>
+					<option value="1">Dist√¢ncia Geogr√°fica</option>
+					<option value="3">Custo</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="cboCidadesOrigem">Origem</label>	
+				<select id="cboCidadesOrigem" name="cboCidadesOrigem" class="form-control">
+					<option value="BAU">BAU</option>
+					<option value="BEL">BEL</option>
+					<option value="BHO">BHO</option>
+					<option value="BLU">BLU</option>
+					<option value="BSB">BSB</option>
+					<option value="CAM">CAM</option>
+					<option value="CPG">CPG</option>
+					<option value="CUI">CUI</option>
+					<option value="CUR">CUR</option>
+					<option value="FLO">FLO</option>
+					<option value="LON">LON</option>
+					<option value="MAN">MAN</option>
+					<option value="NTL">NTL</option>
+					<option value="POA">POA</option>
+					<option value="RBP">RBP</option>
+					<option value="REC">REC</option>
+					<option value="RJO">RJO</option>
+					<option value="SJC">SJC</option>
+					<option value="SLV">SLV</option>
+					<option value="SPO">SPO</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="cboCidadesDestino">Destino</label>	
+				<select id="cboCidadesDestino" name="cboCidadesDestino" class="form-control">
+					<option value="BAU">BAU</option>
+					<option value="BEL">BEL</option>
+					<option value="BHO">BHO</option>
+					<option value="BLU">BLU</option>
+					<option value="BSB">BSB</option>
+					<option value="CAM">CAM</option>
+					<option value="CPG">CPG</option>
+					<option value="CUI">CUI</option>
+					<option value="CUR">CUR</option>
+					<option value="FLO">FLO</option>
+					<option value="LON">LON</option>
+					<option value="MAN">MAN</option>
+					<option value="NTL">NTL</option>
+					<option value="POA">POA</option>
+					<option value="RBP">RBP</option>
+					<option value="REC">REC</option>
+					<option value="RJO">RJO</option>
+					<option value="SJC">SJC</option>
+					<option value="SLV">SLV</option>
+					<option value="SPO">SPO</option>
+				</select>
+			</div>
+			<button class="btn btn-primary" id="btnCalc">Calcular Rota</button>
+		</div>
+		<div class="col-md-4 text-center">
+			<h3 class="text-center">M√©tricas</h3>
+			<img src="img/Metricas.JPG" style="margin: 0 auto;" /> 		
+		</div>
+		<div class="col-md-4 text-center">
+			<h3 class="text-center">Remover</h4>			
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="BAU" class="removeCheck">
+					BAU
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="BEL" class="removeCheck">
+					BEL
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="BHO" class="removeCheck">
+					BHO
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="BLU" class="removeCheck">
+					BLU
+				</label>
+			</div>
+				
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="BSB" class="removeCheck">
+					BSB
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="CAM" class="removeCheck">
+					CAM
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="CPG" class="removeCheck">
+					CPG
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="CUI" class="removeCheck">
+					CUI
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="CUR" class="removeCheck">
+					CAM
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="FLO" class="removeCheck">
+					FLO
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="LON" class="removeCheck">
+					LON
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="MAN" class="removeCheck">
+					MAN
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="NTL" class="removeCheck">
+					NTL
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="POA" class="removeCheck">
+					POA
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="RBP" class="removeCheck">
+					RBP
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="REC" class="removeCheck">
+					REC
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="RJO" class="removeCheck">
+					RJO
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="SJC" class="removeCheck">
+					SJC
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="SLV" class="removeCheck">
+					SLV
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="SPO" class="removeCheck">
+					SPO
+				</label>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<h3 class="text-center">Resultado</h3>
+			<div>
+				<table class="table table-bordered table-hover">
+					<tbody>
+						<tr class="resultado">
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
 		<!-- build:dependency js/deps.min.js-->
 		<script src="js/jquery/jquery-2.2.3.js"></script>
 		<script src="js/bootstrap/bootstrap.js"></script>
@@ -38,563 +241,7 @@
 		<!-- build:app js/index.min.js-->
 		<script type="text/javascript" src="js/index.js"></script>
 		<!-- endbuild -->
-		
-		
-	<script>
-						              						//Hops
-		var vHops = 	[
-							[ 'BAU', [['CAM',  1], ['CPG', 1], ['LON', 1]] 	            			       ],
-							[ 'BEL', [['MAN',  1], ['NTL', 1]] 		                    			       ],
-							[ 'BHO', [['BSB',  1], ['RJO', 1], ['SJC', 1]]              			       ],
-							[ 'BLU', [['CUR',  1], ['FLO', 1], ['POA', 1]]		        			       ],
-							[ 'BSB', [['BHO',  1], ['MAN', 1], ['NTL', 1], ['RBP', 1]] 				       ],	
-							[ 'CAM', [['BAU',  1], ['RBP', 1], ['SJC', 1], ['SPO', 1]]  				   ],
-							[ 'CPG', [['BAU',  1], ['CUI', 1]] 	                        			       ],
-							[ 'CUI', [['CPG',  1], ['MAN', 1]] 	    									   ],
-							[ 'CUR', [['BLU',  1], ['FLO', 1], ['LON', 1], ['SPO', 1]] 				       ],
-							[ 'FLO', [['BLU',  1], ['CUR', 1], ['POA', 1], ['RJO', 1]] 				       ],
-							[ 'LON', [['BAU',  1], ['CUR', 1], ['SPO', 1]] 							       ],
-							[ 'MAN', [['BEL',  1], ['BSB', 1], ['CUI', 1]] 	    						   ],
-							[ 'NTL', [['BEL',  1], ['BSB', 1], ['REC', 1], ['SLV', 1]] 				       ],
-							[ 'POA', [['BLU',  1], ['FLO', 1]] 										       ],
-							[ 'RBP', [['BSB',  1], ['CAM', 1]] 	      									   ],
-							[ 'REC', [['NTL',  1], ['SLV', 1]] 							    			   ],
-							[ 'RJO', [['BHO',  1], ['FLO', 1], ['SJC', 1], ['SLV', 1], ['SPO', 1]] 	       ],
-							[ 'SJC', [['BHO',  1], ['CAM', 1], ['RJO', 1], ['SPO', 1]] 	   		  		   ],
-							[ 'SLV', [['NTL',  1], ['REC', 1], ['RJO', 1]]						 	       ],
-							[ 'SPO', [['COM',  1], ['CUR', 1], ['LON', 1], ['RJO', 1], ['SJC', 1]] 	       ]
-						]; 
-														//Distancia Geografica	
-		var vDistaciaGeo = [
-							[ 'BAU', [['CAM',  3], ['CPG', 10], ['LON', 3]] 	            			   ],
-							[ 'BEL', [['MAN', 18], ['NTL', 21]] 		                    			   ],
-							[ 'BHO', [['BSB',  9], ['RJO', 7], ['SJC', 7]]              			       ],
-							[ 'BLU', [['CUR',  2], ['FLO', 1], ['POA', 7]]		        			       ],
-							[ 'BSB', [['BHO',  9], ['MAN',22], ['NTL',22], ['RBP', 8]] 				       ],	
-							[ 'CAM', [['BAU',  3], ['RBP', 2], ['SJC', 2], ['SPO', 1]]  				   ],
-							[ 'CPG', [['BAU', 10], ['CUI', 8]] 	                        			       ],
-							[ 'CUI', [['CPG',  8], ['MAN',20]] 	    									   ],
-							[ 'CUR', [['BLU',  2], ['FLO', 2], ['LON', 6], ['SPO', 5]] 				       ],
-							[ 'FLO', [['BLU',  1], ['CUR', 2], ['POA', 6], ['RJO',12]] 				       ],
-							[ 'LON', [['BAU',  3], ['CUR', 6], ['SPO', 7]] 							       ],
-							[ 'MAN', [['BEL', 18], ['BSB',22], ['CUI',20]] 	    						   ],
-							[ 'NTL', [['BEL', 21], ['BSB',22], ['REC', 4], ['SLV',15]] 				       ],
-							[ 'POA', [['BLU',  7], ['FLO', 6]] 										       ],
-							[ 'RBP', [['BSB',  8], ['CAM', 2]] 	      									   ],
-							[ 'REC', [['NTL',  4], ['SLV', 8]] 							    			   ],
-							[ 'RJO', [['BHO',  7], ['FLO',12], ['SJC', 3], ['SLV',20], ['SPO', 5]] 	       ],
-							[ 'SJC', [['BHO',  7], ['CAM', 2], ['RJO', 3], ['SPO', 2]] 	   		  		   ],
-							[ 'SLV', [['NTL', 15], ['REC', 8], ['RJO', 20]]						 	       ],
-							[ 'SPO', [['COM',  1], ['CUR', 5], ['LON', 7], ['RJO', 5], ['SJC', 2]] 	       ]
-						];
-															//Custo
-		var vCusto =    [
-							[ 'BAU', [['CAM',  6], ['CPG', 3], ['LON', 2]] 	            			       ],
-							[ 'BEL', [['MAN',  2], ['NTL', 3]] 		                    			       ],
-							[ 'BHO', [['BSB',  6], ['RJO', 6], ['SJC', 8]]              			       ],
-							[ 'BLU', [['CUR',  5], ['FLO', 3], ['POA', 2]]		        			       ],
-							[ 'BSB', [['BHO',  6], ['MAN', 6], ['NTL', 7], ['RBP', 4]] 				       ],	
-							[ 'CAM', [['BAU',  6], ['RBP', 4], ['SJC',10], ['SPO', 7]]  				   ],
-							[ 'CPG', [['BAU',  3], ['CUI', 2]] 	                        			       ],
-							[ 'CUI', [['CPG',  2], ['MAN', 3]] 	    									   ],
-							[ 'CUR', [['BLU',  5], ['FLO', 5], ['LON', 2], ['SPO',10]] 				       ],
-							[ 'FLO', [['BLU',  3], ['CUR', 5], ['POA', 2], ['RJO',10]] 				       ],
-							[ 'LON', [['BAU',  2], ['CUR', 2], ['SPO', 2]] 							       ],
-							[ 'MAN', [['BEL',  2], ['BSB', 6], ['CUI', 3]] 	    						   ],
-							[ 'NTL', [['BEL',  3], ['BSB', 7], ['REC', 3], ['SLV', 4]] 				       ],
-							[ 'POA', [['BLU',  2], ['FLO', 2]] 										       ],
-							[ 'RBP', [['BSB',  4], ['CAM', 4]] 	      									   ],
-							[ 'REC', [['NTL',  3], ['SLV', 2]] 							    			   ],
-							[ 'RJO', [['BHO',  6], ['FLO',10], ['SJC',10], ['SLV', 6], ['SPO',15]] 	       ],
-							[ 'SJC', [['BHO',  8], ['CAM',10], ['RJO',10], ['SPO',16]] 	   		  		   ],
-							[ 'SLV', [['NTL',  4], ['REC', 2], ['RJO', 6]]						 	       ],
-							[ 'SPO', [['COM',  7], ['CUR',10], ['LON', 2], ['RJO',15], ['SJC', 16]] 	   ]
-						];
-						
-		var vHopsAux = vHops.slice();
-		var vDistaciaGeoAux = vDistaciaGeo.slice();
-		var vCustoAux = vCusto.slice();
-		
-		function Validar(verticeRemv) //Valida se remoÁ„o do vertice È origem ou destino
-		{
-			var comboCidadesOrigem = document.getElementById("cboCidadesOrigem");
-			var comboCidadesDestino = document.getElementById("cboCidadesDestino");
-			
-			console.log('Parametro passado pra funcao '+verticeRemv); 
-			
-			if(comboCidadesOrigem.selectedIndex == verticeRemv || comboCidadesDestino.selectedIndex == verticeRemv)
-			{
-				alert('Voce nao pode remover um vertice Origem ou Destino')
-				return false;
-			}
-			else
-			{
-				console.log('Tudo certo')
-				return true;
-			}
-		}
-						
-		
-		function Remover() //Remove vertices
-		{
-										
-			if(!BAU.checked || !Validar(0))
-			{
-				document.getElementById("cboCidadesOrigem").options[0].disabled = false;
-				document.getElementById("cboCidadesDestino").options[0].disabled = false;	
-				BAU.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				console.log('Foi removido');
-				vHops.splice(0,1,['--',1]);
-				vDistaciaGeo.splice(0,1,['--',1]);										
-				vCusto.splice(0,1,['--',1]);										
-			}
-			if(!BEL.checked || !Validar(1))
-			{
-				document.getElementById("cboCidadesOrigem").options[1].disabled = false;
-				document.getElementById("cboCidadesDestino").options[1].disabled = false;
-				BEL.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{							
-				vHops.splice(1,1,['--',1]);	
-				vDistaciaGeo.splice(1,1,['--',1]);										
-				vCusto.splice(1,1,['--',1])								
-			}
-			if(!BHO.checked || !Validar(2))
-			{
-				document.getElementById("cboCidadesOrigem").options[2].disabled = false;
-				document.getElementById("cboCidadesDestino").options[2].disabled = false;				
-				BHO.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(2,1,['--',1]);				
-				vDistaciaGeo.splice(2,1,['--',1]);										
-				vCusto.splice(2,1,['--',1])				
-			}
-			if(!BLU.checked || !Validar(3))
-			{
-				document.getElementById("cboCidadesOrigem").options[3].disabled = false;
-				document.getElementById("cboCidadesDestino").options[3].disabled = false;
-				BLU.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(3,1,['--',1]);						
-				vDistaciaGeo.splice(3,1,['--',1]);										
-				vCusto.splice(3,1,['--',1])
-			}
-			if(!BSB.checked || !Validar(4))
-			{
-				document.getElementById("cboCidadesOrigem").options[4].disabled = false;
-				document.getElementById("cboCidadesDestino").options[4].disabled = false;
-				BSB.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(4,1,['--',1]);
-				vDistaciaGeo.splice(4,1,['--',1]);										
-				vCusto.splice(4,1,['--',1])				
-			}
-			if(!CAM.checked || !Validar(5))
-			{
-				document.getElementById("cboCidadesOrigem").options[5].disabled = false;
-				document.getElementById("cboCidadesDestino").options[5].disabled = false;
-				CAM.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(5,1,['--',1]);				
-				vDistaciaGeo.splice(5,1,['--',1]);										
-				vCusto.splice(5,1,['--',1])								
-			}
-			if(!CPG.checked || !Validar(6))
-			{
-				document.getElementById("cboCidadesOrigem").options[6].disabled = false;
-				document.getElementById("cboCidadesDestino").options[6].disabled = false;
-				CPG.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(6,1,['--',1]);
-				vDistaciaGeo.splice(6,1,['--',1]);										
-				vCusto.splice(6,1,['--',1])		
-			}
-			if(!CUI.checked || !Validar(7))
-			{
-				document.getElementById("cboCidadesOrigem").options[7].disabled = false;
-				document.getElementById("cboCidadesDestino").options[7].disabled = false;	
-				CUI.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(7,1,['--',1]);
-				vDistaciaGeo.splice(7,1,['--',1]);										
-				vCusto.splice(7,1,['--',1])				
-			}
-			if(!CUR.checked || !Validar(8))
-			{
-				document.getElementById("cboCidadesOrigem").options[8].disabled = false;
-				document.getElementById("cboCidadesDestino").options[8].disabled = false;	
-				CUR.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(8,1,['--',1]);
-				vDistaciaGeo.splice(8,1,['--',1]);										
-				vCusto.splice(8,1,['--',1])				
-			}
-			if(!FLO.checked || !Validar(9))
-			{
-				document.getElementById("cboCidadesOrigem").options[9].disabled = false;
-				document.getElementById("cboCidadesDestino").options[9].disabled = false;	
-				FLO.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(9,1,['--',1]);
-				vDistaciaGeo.splice(9,1,['--',1]);										
-				vCusto.splice(9,1,['--',1])				
-			}
-			if(!LON.checked || !Validar(10))
-			{
-				document.getElementById("cboCidadesOrigem").options[10].disabled = false;
-				document.getElementById("cboCidadesDestino").options[10].disabled = false;	
-				LON.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(10,1,['--',1]);
-				vDistaciaGeo.splice(10,1,['--',1]);										
-				vCusto.splice(10,1,['--',1])				
-			}
-			if(!MAN.checked || !Validar(11))
-			{
-				document.getElementById("cboCidadesOrigem").options[11].disabled = false;
-				document.getElementById("cboCidadesDestino").options[11].disabled = false;	
-				MAN.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(11,1,['--',1]);						
-				vDistaciaGeo.splice(11,1,['--',1]);										
-				vCusto.splice(11,1,['--',1])				
-			}
-			if(!NTL.checked || !Validar(12))
-			{
-				document.getElementById("cboCidadesOrigem").options[12].disabled = false;
-				document.getElementById("cboCidadesDestino").options[12].disabled = false;	
-				NTL.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(12,1,['--',1]);						
-				vDistaciaGeo.splice(12,1,['--',1]);										
-				vCusto.splice(12,1,['--',1])				
-			}
-			if(!POA.checked || !Validar(13))
-			{
-				document.getElementById("cboCidadesOrigem").options[13].disabled = false;
-				document.getElementById("cboCidadesDestino").options[13].disabled = false;	
-				POA.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(13,1,['--',1]);
-				vDistaciaGeo.splice(13,1,['--',1]);										
-				vCusto.splice(13,1,['--',1])				
-			}
-			if(!RBP.checked || !Validar(14))
-			{
-				document.getElementById("cboCidadesOrigem").options[14].disabled = false;
-				document.getElementById("cboCidadesDestino").options[14].disabled = false;	
-				RBP.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(14,1,['--',1]);
-				vDistaciaGeo.splice(14,1,['--',1]);										
-				vCusto.splice(14,1,['--',1])				
-			}
-			if(!REC.checked || !Validar(15))
-			{
-				document.getElementById("cboCidadesOrigem").options[15].disabled = false;
-				document.getElementById("cboCidadesDestino").options[15].disabled = false;	
-				REC.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(15,1,['--',1]);
-				vDistaciaGeo.splice(15,1,['--',1]);										
-				vCusto.splice(15,1,['--',1])				
-			}
-			if(!RJO.checked || !Validar(16))
-			{
-				document.getElementById("cboCidadesOrigem").options[16].disabled = false;
-				document.getElementById("cboCidadesDestino").options[16].disabled = false;	
-				RJO.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(16,1,['--',1]);
-				vDistaciaGeo.splice(16,1,['--',1]);										
-				vCusto.splice(16,1,['--',1])				
-			}
-			if(!SJC.checked || !Validar(17))
-			{
-				document.getElementById("cboCidadesOrigem").options[17].disabled = false;
-				document.getElementById("cboCidadesDestino").options[17].disabled = false;	
-				SJC.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(17,1,['--',1]);
-				vDistaciaGeo.splice(17,1,['--',1]);										
-				vCusto.splice(17,1,['--',1])				
-			}
-			if(!SLV.checked || !Validar(18))
-			{
-				document.getElementById("cboCidadesOrigem").options[18].disabled = false;
-				document.getElementById("cboCidadesDestino").options[18].disabled = false;	
-				SLV.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(18,1,['--',1]);
-				vDistaciaGeo.splice(18,1,['--',1]);										
-				vCusto.splice(18,1,['--',1])				
-			}
-			if(!SPO.checked || !Validar(19))
-			{
-				document.getElementById("cboCidadesOrigem").options[19].disabled = false;
-				document.getElementById("cboCidadesDestino").options[19].disabled = false;	
-				SPO.checked = false;
-				console.log('blz nao foi removido');
-			}
-			else
-			{
-				vHops.splice(19,1,['--',1]);
-				vDistaciaGeo.splice(19,1,['--',1]);										
-				vCusto.splice(19,1,['--',1])				
-			}
-			
-			console.log(vHops);
-		
-		}
-		
-		function RemoverListaComboBox()    //Inativas as opÁoes do combobox
-		{								
-			
-			document.getElementById("cboCidadesOrigem").options[0].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[1].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[2].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[3].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[4].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[5].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[6].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[7].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[8].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[9].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[10].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[11].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[12].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[13].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[14].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[15].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[16].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[17].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[18].disabled = true;
-			document.getElementById("cboCidadesOrigem").options[19].disabled = true;
-			
-			document.getElementById("cboCidadesDestino").options[0].disabled = true;
-			document.getElementById("cboCidadesDestino").options[1].disabled = true;
-			document.getElementById("cboCidadesDestino").options[2].disabled = true;
-			document.getElementById("cboCidadesDestino").options[3].disabled = true;
-			document.getElementById("cboCidadesDestino").options[4].disabled = true;
-			document.getElementById("cboCidadesDestino").options[5].disabled = true;
-			document.getElementById("cboCidadesDestino").options[6].disabled = true;
-			document.getElementById("cboCidadesDestino").options[7].disabled = true;
-			document.getElementById("cboCidadesDestino").options[8].disabled = true;
-			document.getElementById("cboCidadesDestino").options[9].disabled = true;
-			document.getElementById("cboCidadesDestino").options[10].disabled = true;
-			document.getElementById("cboCidadesDestino").options[11].disabled = true;
-			document.getElementById("cboCidadesDestino").options[12].disabled = true;
-			document.getElementById("cboCidadesDestino").options[13].disabled = true;
-			document.getElementById("cboCidadesDestino").options[14].disabled = true;
-			document.getElementById("cboCidadesDestino").options[15].disabled = true;
-			document.getElementById("cboCidadesDestino").options[16].disabled = true;
-			document.getElementById("cboCidadesDestino").options[17].disabled = true;
-			document.getElementById("cboCidadesDestino").options[18].disabled = true;
-			document.getElementById("cboCidadesDestino").options[19].disabled = true;
-			
-			Remover();				
-				
-		}
-		
-	
-	   	function Calcular() // Executa o calculo do caminho minimo
-	    {
-		
-			Remover();	
-			
-			
-			var comboCidadesOrigem = document.getElementById("cboCidadesOrigem");
-			var comboCidadesDestino = document.getElementById("cboCidadesDestino");    
-			var comboMetrica = document.getElementById("cboMetrica");
-			
-			RemoverListaComboBox(); 	
-			
-			$(function ()
-			{
-				var dijkstra = new Dijkstra();
-								
-								
-				if(comboMetrica.selectedIndex == 0)//Hops
-				{
-					dijkstra.setGraph(vHops);					
 
-				}
-				else if(comboMetrica.selectedIndex == 1)//Dist‚ncia geogr·fica:
-				{	
-					dijkstra.setGraph(vDistaciaGeo);					
-
-				}
-				else //Custo
-				{
-					dijkstra.setGraph(vCusto);					
-
-				}
-				document.getElementById("resultado").textContent = dijkstra.getPath(comboCidadesOrigem.options[comboCidadesOrigem.selectedIndex].value, comboCidadesDestino.options[comboCidadesDestino.selectedIndex].value);
-				
-				
-				console.log(vHops);
-				
-				vHops = vHopsAux.slice();
-				vDistaciaGeo = vDistaciaGeoAux.slice();
-				vCusto = vCustoAux.slice();
-				
-			});
-    }
-	
-	
-				
-	</script>
-	<img src="img/Mapa_Conexao.JPG" style="float:left"/> 				
-	
-	<center><div style="float:left">
-		
-		Metrica	
-		<select id="cboMetrica">
-			<option value="0">Hops</option>
-			<option value="1">Distancia Geografica:</option>
-			<option value="3">Custo:</option>
-		</select>
-
-		<br><br>
-		Origem:
-		<select id="cboCidadesOrigem">
-			<option value="BAU">BAU</option>
-			<option value="BEL">BEL</option>
-			<option value="BHO">BHO</option>
-			<option value="BLU">BLU</option>
-			<option value="BSB">BSB</option>
-			<option value="CAM">CAM</option>
-			<option value="CPG">CPG</option>
-			<option value="CUI">CUI</option>
-			<option value="CUR">CUR</option>
-			<option value="FLO">FLO</option>
-			<option value="LON">LON</option>
-			<option value="MAN">MAN</option>
-			<option value="NTL">NTL</option>
-			<option value="POA">POA</option>
-			<option value="RBP">RBP</option>
-			<option value="REC">REC</option>
-			<option value="RJO">RJO</option>
-			<option value="SJC">SJC</option>
-			<option value="SLV">SLV</option>
-			<option value="SPO">SPO</option>
-		</select>
-		Destino	
-		<select id="cboCidadesDestino">
-			<option value="BAU">BAU</option>
-			<option value="BEL">BEL</option>
-			<option value="BHO">BHO</option>
-			<option value="BLU">BLU</option>
-			<option value="BSB">BSB</option>
-			<option value="CAM">CAM</option>
-			<option value="CPG">CPG</option>
-			<option value="CUI">CUI</option>
-			<option value="CUR">CUR</option>
-			<option value="FLO">FLO</option>
-			<option value="LON">LON</option>
-			<option value="MAN">MAN</option>
-			<option value="NTL">NTL</option>
-			<option value="POA">POA</option>
-			<option value="RBP">RBP</option>
-			<option value="REC">REC</option>
-			<option value="RJO">RJO</option>
-			<option value="SJC">SJC</option>
-			<option value="SLV">SLV</option>
-			<option value="SPO">SPO</option>
-		</select>
-		
-		<br><br>
-		<button id="btn" onclick="Calcular()">Calcular Rota</button>
-		<br><br>
-		<div id="resultado"></div>
-		</div>
-		</center>
-		<img src="img/Metricas.JPG" style="float:left"/> 		
-		<h4 class="text-center">Remover</h4>
-		<div class="text-center">
-		BAU <input type="checkbox" id="BAU" onclick="RemoverListaComboBox()"><br>
-		BEL <input type="checkbox" id="BEL" onclick="RemoverListaComboBox()"><br>
-		BHO <input type="checkbox" id="BHO" onclick="RemoverListaComboBox()"><br>
-		BLU <input type="checkbox" id="BLU" onclick="RemoverListaComboBox()"><br>
-		BSB <input type="checkbox" id="BSB" onclick="RemoverListaComboBox()"><br>
-		CAM <input type="checkbox" id="CAM" onclick="RemoverListaComboBox()"><br>
-		CPG <input type="checkbox" id="CPG" onclick="RemoverListaComboBox()"><br>
-		CUI <input type="checkbox" id="CUI" onclick="RemoverListaComboBox()"><br>
-		CUR <input type="checkbox" id="CUR" onclick="RemoverListaComboBox()"><br>
-		FLO <input type="checkbox" id="FLO" onclick="RemoverListaComboBox()"><br>
-		LON <input type="checkbox" id="LON" onclick="RemoverListaComboBox()"><br>
-		MAN <input type="checkbox" id="MAN" onclick="RemoverListaComboBox()"><br>
-		NTL <input type="checkbox" id="NTL" onclick="RemoverListaComboBox()"><br>
-		POA <input type="checkbox" id="POA" onclick="RemoverListaComboBox()"><br>
-		RBP <input type="checkbox" id="RBP" onclick="RemoverListaComboBox()"><br>
-		REC <input type="checkbox" id="REC" onclick="RemoverListaComboBox()"><br>
-		RJO <input type="checkbox" id="RJO" onclick="RemoverListaComboBox()"><br>
-		SJC <input type="checkbox" id="SJC" onclick="RemoverListaComboBox()"><br>
-		SLV <input type="checkbox" id="SLV" onclick="RemoverListaComboBox()"><br>
-		SPO <input type="checkbox" id="SPO" onclick="RemoverListaComboBox()"><br>
-		<div>
-
-
-
-		
-		
 		
 	</body>
 </html>
